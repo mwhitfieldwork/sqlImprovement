@@ -1,0 +1,2 @@
+			ALTER TABLE products
+			ADD isDeleted BIT NOT NULL DEFAULT 0
