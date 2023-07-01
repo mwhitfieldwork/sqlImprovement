@@ -1,0 +1,17 @@
+BEGIN TRY
+	BEGIN TRANSACTION
+		IF COL_LENGTH('Products', 'isDeleted') IS NOT NULL
+	BEGIN
+		ALTER TABLE dbo.Products
+		Drop CONSTRAINT DF__Products__isDele__02084FDA
+
+		ALTER TABLE dbo.Products
+		DROP COLUMN isDeleted
+	END
+END TRY
+BEGIN CATCH
+	ROLLBACK TRANSACTION 
+	RAISERROR('Could not alter tables', 16,1)
+END CATCH
+
+
